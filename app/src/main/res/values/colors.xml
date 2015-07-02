@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <color name="primary">#8BC34A</color>
-  <color name="primary_dark">#8BC34A</color>
-  <color name="primary_darker">#689F38</color>
-  <color name="accent">#FFFFFF</color>
+    <color name="primary">#8BC34A</color>
+    <color name="primary_dark">#8BC34A</color>
+    <color name="primary_darker">#689F38</color>
+    <color name="accent">#FFFFFF</color>
 
-  <color name="black">#000000</color>
-  <color name="jet">#222222</color>
-  <color name="oil">#333333</color>
-  <color name="monsoon">#777777</color>
-  <color name="jumbo">#888888</color>
-  <color name="aluminum">#999999</color>
-  <color name="base">#AAAAAA</color>
-  <color name="iron">#CCCCCC</color>
-  <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="jet">#222222</color>
+    <color name="oil">#333333</color>
+    <color name="monsoon">#777777</color>
+    <color name="jumbo">#888888</color>
+    <color name="aluminum">#999999</color>
+    <color name="base">#AAAAAA</color>
+    <color name="iron">#CCCCCC</color>
+    <color name="white">#FFFFFF</color>
 
-  <color name="theme_light">#F48FB1</color>
-  <color name="theme_default_primary">#EC407A</color>
-  <color name="theme_window_background">#2A2A2A</color>
-  <color name="gray_row_color">#ff515252</color>
+    <color name="theme_light">#F48FB1</color>
+    <color name="theme_default_primary">#EC407A</color>
+    <color name="theme_window_background">#2A2A2A</color>
+    <color name="gray_row_color">#ff515252</color>
 
 
-  <color name="dialer_call">#00C853</color>
-  <color name="theme_dialer_high">#0277BD</color>
-  <color name="theme_dialer_primary">#0288D1</color>
-  <color name="theme_dialer_accent">#FFF</color>
+    <color name="dialer_call">#00C853</color>
+    <color name="theme_dialer_high">#0277BD</color>
+    <color name="theme_dialer_primary">#0288D1</color>
+    <color name="theme_dialer_accent">#FFF</color>
 
-  <color name="color_set_1_primary">#4fc3f7</color>
-  <color name="color_set_1_accent">#009688</color>
+    <color name="color_set_1_primary">#4fc3f7</color>
+    <color name="color_set_1_accent">#009688</color>
 
-  <color name="color_set_2_primary">#42bd41</color>
-  <color name="color_set_2_accent">#673AB7</color>
+    <color name="color_set_2_primary">#42bd41</color>
+    <color name="color_set_2_accent">#673AB7</color>
 
-  <color name="color_set_3_primary">#ffb74d</color>
-  <color name="color_set_3_accent">#E91E63</color>
+    <color name="color_set_3_primary">#ffb74d</color>
+    <color name="color_set_3_accent">#E91E63</color>
 
-  <color name="color_set_4_primary">#ff8a65</color>
-  <color name="color_set_4_accent">#d500f9</color>
+    <color name="color_set_4_primary">#ff8a65</color>
+    <color name="color_set_4_accent">#d500f9</color>
 </resources>

@@ -33,6 +33,7 @@ public class LoginActivity extends AppCompatActivity implements EventListener  {
     @InjectView(R.id.btn_login) Button _loginButton;
     //@InjectView(R.id.link_signup) TextView _signupLink;
 
+    private ProgressDialog progressDialog;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,8 +59,9 @@ public class LoginActivity extends AppCompatActivity implements EventListener  {
 
         _loginButton.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
+        progressDialog = new ProgressDialog(LoginActivity.this,
                 R.style.AppTheme_Dark_Dialog);
+
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Authenticating...");
         progressDialog.show();
@@ -71,6 +73,7 @@ public class LoginActivity extends AppCompatActivity implements EventListener  {
         Log.v("PlivoOutbound", password);
 
         endpoint.login(username, password);
+
     }
 
     @Override
@@ -83,7 +86,14 @@ public class LoginActivity extends AppCompatActivity implements EventListener  {
     public void onLoginFailed() {
         //Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
         Log.v("PlivoOutbound", "Login failed");
-        //_loginButton.setEnabled(true);
+        runOnUiThread(
+                new Runnable() {
+                    public void run() {
+                        progressDialog.dismiss();
+                        _loginButton.setEnabled(true);
+                        Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 
     public boolean validate() {
@@ -114,6 +124,8 @@ public class LoginActivity extends AppCompatActivity implements EventListener  {
 
         //_loginButton.setEnabled(true);
         Log.v("PlivoOutbound", "Logged in");
+        Intent intent = new Intent(this, NavigationActivity.class);
+        startActivity(intent);
 
     }
 

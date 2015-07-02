@@ -2,9 +2,11 @@ package com.plivo.castleblack;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -22,13 +24,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.widget.ListView;
 import android.widget.TextView;
-
+import android.content.Context;
 
 import android.support.v7.app.AppCompatActivity;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
+import com.plivo.endpoint.Endpoint;
+import com.plivo.endpoint.EventListener;
+import com.plivo.endpoint.Incoming;
+import com.plivo.endpoint.Outgoing;
 
 public class NavigationActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -42,12 +49,13 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
     private ActionBarDrawerToggle _drawerToggle;
     private int _selectedId;
     private MyPagerAdapter _adapter;
-
+    public Context ctx;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
         ButterKnife.inject(this);
+        ctx = getApplicationContext();
         setSupportActionBar(_toolbar);
         _drawer.setNavigationItemSelectedListener(this);
         _drawerToggle = new ActionBarDrawerToggle(this, _drawerLayout,_toolbar,R.string.drawer_open, R.string.drawer_close);
@@ -55,11 +63,14 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         _drawerToggle.syncState();
         _selectedId = savedInstanceState == null ? R.id.navigation_item_1 : savedInstanceState.getInt(SELECTED_ITEM_ID );
         navigate(_selectedId);
-        _adapter = new MyPagerAdapter(getSupportFragmentManager());
-        _pager.setAdapter(_adapter);
-        _tabLayout.setTabsFromPagerAdapter(_adapter);
 
+        _adapter = new MyPagerAdapter(getSupportFragmentManager());
+
+        _pager.setAdapter(_adapter);
+
+        _tabLayout.setTabsFromPagerAdapter(_adapter);
         _tabLayout.setupWithViewPager(_pager);
+
         _pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(_tabLayout));
 
     }
@@ -127,56 +138,62 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         if (_drawerLayout.isDrawerOpen(GravityCompat.START)) {
             _drawerLayout.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            moveTaskToBack(true);
         }
     }
 
     public static class MyFragment extends Fragment {
-        public static final java.lang.String ARG_PAGE = "arg_page";
+
 
         public MyFragment() {
 
         }
 
-        public static MyFragment newInstance(int pageNumber) {
-            MyFragment myFragment = new MyFragment();
-            Bundle arguments = new Bundle();
-            arguments.putInt(ARG_PAGE, pageNumber + 1);
-            myFragment.setArguments(arguments);
-            return myFragment;
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_main, container,false);
+            return rootView;
+        }
+    }
+
+
+
+
+
+    class MyPagerAdapter extends FragmentStatePagerAdapter {
+        String[] tabs;
+        public MyPagerAdapter(FragmentManager fm) {
+            super(fm);
+            tabs=getResources().getStringArray(R.array.tabs);
         }
 
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            Bundle arguments = getArguments();
-            int pageNumber = arguments.getInt(ARG_PAGE);
-            TextView myText = new TextView(getActivity());
-            myText.setText("Hello I am the text inside this Fragment " + pageNumber);
-            myText.setGravity(Gravity.CENTER);
-            return myText;
+        public Fragment getItem(int position) {
+            Fragment frgmt = null;
+
+            switch (position) {
+                case 0:
+                    frgmt = new MyFragment2();
+                    break;
+                case 1:
+                    frgmt = new NavigationActivity.MyFragment();
+                    break;
+
+                default:
+                    break;
+            }
+
+            return frgmt;
+        }
+
+        @Override
+        public int getCount() {
+            return 2;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return tabs[position];
         }
     }
 }
 
-class MyPagerAdapter extends FragmentStatePagerAdapter {
-
-    public MyPagerAdapter(FragmentManager fm) {
-        super(fm);
-    }
-
-    @Override
-    public Fragment getItem(int position) {
-        NavigationActivity.MyFragment myFragment = NavigationActivity.MyFragment.newInstance(position);
-        return myFragment;
-    }
-
-    @Override
-    public int getCount() {
-        return 3;
-    }
-
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return "     Tab " + (position + 1) + "     ";
-    }
-}

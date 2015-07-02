@@ -25,6 +25,7 @@
         <item name="android:textColorPrimary">@color/iron</item>
         <item name="android:background">@color/primary</item>
     </style>
+
     <style name="DialerButton">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -47,4 +48,5 @@
         <item name="android:paddingBottom">2dip</item>
         <item name="android:gravity">center</item>
     </style>
+
 </resources>

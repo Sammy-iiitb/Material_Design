@@ -18,9 +18,9 @@
     <string name="text_dismiss">Dismiss</string>
 
     <string name="title_activity_navigation">Navigation</string>
-    <string name="title_activity_calling_screen">CallingScreen</string>
+    <string-array name="tabs">
+        <item>calls</item>
+        <item>recent</item>
 
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_dailer">Dailer</string>
+    </string-array>
 </resources>
