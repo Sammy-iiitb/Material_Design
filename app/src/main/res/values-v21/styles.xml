@@ -41,4 +41,20 @@
         <item name="android:layout_marginRight">4.0dip</item>
     </style>
 
+    <style name="PhoneNumber">
+        <item name="android:textColor">@color/theme_dialer_high</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:paddingTop">8dip</item>
+        <item name="android:paddingBottom">8dip</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
+    <style name="PhoneNumberSecond">
+        <item name="android:textColor">@color/theme_dialer_high</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingLeft">@dimen/default_margin_4</item>
+        <item name="android:paddingBottom">2dip</item>
+        <item name="android:gravity">center</item>
+    </style>
+
 </resources>

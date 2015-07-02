@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_margin_8"
                 android:paddingBottom="@dimen/default_margin_4"
-                android:text="@string/launcherActivityLabel"
+                android:text="Phone"
                 android:textColor="?attr/colorAccent"
                 android:textSize="12sp" />
 
@@ -112,7 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/phone_top"
-            android:background="?attr/mainBackgroundColor"
+            android:background="@color/primary_dark"
             android:orientation="vertical"
             android:paddingRight="78dip">
 
@@ -307,78 +307,18 @@
             android:orientation="vertical"
             android:paddingRight="@dimen/default_margin_16">
 
-            <com.melnykov.fab.FloatingActionButton
-                android:id="@+id/btn_call"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="16dip"
-                android:src="@drawable/ic_local_phone"
-                style="?attr/callFabButtonStyle"
-                />
 
 
-            <com.melnykov.fab.FloatingActionButton
-                android:id="@+id/btn_add_contact"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="16dip"
-                android:src="@drawable/ic_person_add"
-                style="?attr/addContactFabButtonStyle"
-                fab:fab_type="mini" />
 
-            <com.melnykov.fab.FloatingActionButton
-                android:id="@+id/btn_send_sms"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="16dip"
-                android:src="@drawable/ic_perm_phone_msg_black_24dp"
-                style="?attr/sendSmsFabButtonStyle"
-                fab:fab_type="mini" />
 
-            <com.melnykov.fab.FloatingActionButton
-                android:id="@+id/btn_voice_mail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="16dip"
-                android:src="@drawable/ic_voicemail"
-                style="?attr/voiceMailFabButtonStyle"
-                fab:fab_type="mini" />
 
-            <!-- <com.melnykov.fab.FloatingActionButton
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_gravity="center_horizontal"
-                 android:layout_marginBottom="16dip"
-                 android:src="@drawable/ic_clear"
-                 fab:fab_colorNormal="#607D8B"
-                 fab:fab_colorPressed="#455A64"
-                 fab:fab_colorRipple="#CFD8DC"
-                 fab:fab_type="mini" /> -->
+
+
         </LinearLayout>
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/phone"
-        android:layout_marginLeft="@dimen/default_margin_8"
-        android:layout_marginRight="@dimen/default_margin_8"
-        android:paddingBottom="@dimen/default_margin_8"
-        android:animateLayoutChanges="true"
-        >
 
-        <include layout="@layout/view_quick_phone_call"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            />
-
-    </RelativeLayout>
 
 
 </RelativeLayout>
