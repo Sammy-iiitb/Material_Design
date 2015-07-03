@@ -15,6 +15,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Gravity;
@@ -22,8 +23,10 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.content.Context;
@@ -39,9 +42,13 @@ import com.plivo.endpoint.Outgoing;
 
 public class NavigationActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
+    public static final int NUMBER_STAR = 10;
+    public static final int NUMBER_SHARP = 11;
     @InjectView(R.id.app_bar) Toolbar _toolbar;
     @InjectView(R.id.main_drawer) NavigationView _drawer;
     @InjectView(R.id.drawer_layout) DrawerLayout _drawerLayout;
+    @InjectView(R.id.backspace) View mBackspaceBtn;
+    @InjectView(R.id.edit_phone) EditText mEditText;
 
 
     private static final String SELECTED_ITEM_ID = "selected_item_id";
@@ -56,6 +63,7 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         ButterKnife.inject(this);
         ctx = getApplicationContext();
         setSupportActionBar(_toolbar);
+
         _drawer.setNavigationItemSelectedListener(this);
         _drawerToggle = new ActionBarDrawerToggle(this, _drawerLayout,_toolbar,R.string.drawer_open, R.string.drawer_close);
         _drawerLayout.setDrawerListener(_drawerToggle);
@@ -63,8 +71,71 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         _selectedId = savedInstanceState == null ? R.id.navigation_item_1 : savedInstanceState.getInt(SELECTED_ITEM_ID );
         navigate(_selectedId);
 
+        mBackspaceBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Editable currentText = mEditText.getText();
+                int selectionStart = mEditText.getSelectionStart();
+                if (selectionStart != 0) {
+                    currentText.delete(selectionStart - 1, selectionStart);
+                }
+            }
+
+        });
+        mBackspaceBtn.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                mEditText.getText().clear();
+                return true;
+            }
+        });
+        ViewGroup v = (ViewGroup) findViewById(R.id.lay);
+
+        for (int i = 0; i < 12; i++) {
+            View button = v.findViewWithTag("" + i);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String tag = (String) v.getTag();
+                    int number = Integer.parseInt(tag);
+                    if (number < 10) {
+                        updateText(String.valueOf(number));
+                    } else if (number == NUMBER_STAR) {
+                        updateText("*");
+                    } else if (number == NUMBER_SHARP) {
+                        updateText("#");
+                    }
+                }
+            });
+            if (i == 0 || i == NUMBER_SHARP || i == NUMBER_STAR) {
+                button.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        String tag = (String) v.getTag();
+                        int number = Integer.parseInt(tag);
+                        if (number == 0) {
+                            updateText("+");
+
+                            return true;
+                        } else if (mEditText.getText().length() > 0) {
+                            if (number == NUMBER_STAR) {
+                                updateText(",");
+
+                                return true;
+                            } else if (number == NUMBER_SHARP) {
+                                updateText(";");
+
+                                return true;
+                            }
+                        }
+                        return false;
+                    }
+                });
+            }
+        }
 
     }
+
 
     private void navigate(int mSelectedId) {
         Intent intent = null;
@@ -133,7 +204,11 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         }
     }
 
-
+    private void updateText(String symbol) {
+        Editable text = mEditText.getText();
+        int selectionStart = mEditText.getSelectionStart();
+        text.insert(selectionStart, symbol);
+    }
 
 
 
