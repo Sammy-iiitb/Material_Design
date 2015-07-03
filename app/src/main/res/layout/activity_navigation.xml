@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
+    android:background="@color/white"
     tools:context="com.plivo.castleblack.NavigationActivity">
 
     <LinearLayout
@@ -203,35 +204,24 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/default_size_54">
-
-                    <RelativeLayout
-                        android:layout_width="0dip"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.35"
-                        android:tag="10"
-                        android:background="?attr/selectableItemBackground">
-
                         <TextView
                             style="@style/PhoneNumber"
                             android:id="@+id/n_star"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@null"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.35"
+                            android:tag="10"
                             android:text="*"
                             android:duplicateParentState="false"
                             android:layout_centerInParent="true"
                             android:textSize="42sp" />
-
-
-                    </RelativeLayout>
-
 
                     <RelativeLayout
                         android:layout_width="0dip"
                         android:layout_height="match_parent"
                         android:layout_weight="0.3"
                         android:tag="0"
-                        android:background="?attr/selectableItemBackground">
+                        >
 
                         <TextView
                             style="@style/PhoneNumber"
@@ -253,23 +243,20 @@
 
                     </RelativeLayout>
 
-                    <RelativeLayout
-                        android:layout_width="0dip"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.35"
-                        android:tag="11"
-                        android:background="?attr/selectableItemBackground">
+
 
                         <TextView
                             android:id="@+id/n_sharp"
                             style="@style/PhoneNumber"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.35"
+                            android:tag="11"
                             android:layout_centerInParent="true"
-                            android:background="@null"
+
                             android:text="#" />
 
-                    </RelativeLayout>
+
                 </LinearLayout>
             </LinearLayout>
 
@@ -295,6 +282,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="16dip"
                     android:src="@drawable/ic_local_phone"
+                    android:onClick="callNow"
                     style="CallFabButton"
                     />
 

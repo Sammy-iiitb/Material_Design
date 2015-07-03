@@ -16,6 +16,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Gravity;
@@ -35,12 +36,13 @@ import android.support.v7.app.AppCompatActivity;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
+import com.melnykov.fab.FloatingActionButton;
 import com.plivo.endpoint.Endpoint;
 import com.plivo.endpoint.EventListener;
 import com.plivo.endpoint.Incoming;
 import com.plivo.endpoint.Outgoing;
 
-public class NavigationActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class NavigationActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, EventListener {
 
     public static final int NUMBER_STAR = 10;
     public static final int NUMBER_SHARP = 11;
@@ -49,8 +51,11 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
     @InjectView(R.id.drawer_layout) DrawerLayout _drawerLayout;
     @InjectView(R.id.backspace) View mBackspaceBtn;
     @InjectView(R.id.edit_phone) EditText mEditText;
+    @InjectView(R.id.btn_call)
+    FloatingActionButton callBtn;
 
-
+    Endpoint endpoint = DataHolder.getEndpoint();
+    Outgoing outgoing = new Outgoing(endpoint);
     private static final String SELECTED_ITEM_ID = "selected_item_id";
     private ActionBarDrawerToggle _drawerToggle;
     private int _selectedId;
@@ -89,6 +94,8 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
                 return true;
             }
         });
+
+
         ViewGroup v = (ViewGroup) findViewById(R.id.lay);
 
         for (int i = 0; i < 12; i++) {
@@ -133,6 +140,14 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
                 });
             }
         }
+
+
+    }
+    public void callNow(View view) {
+        // Log into plivo cloud
+        outgoing = endpoint.createOutgoingCall();
+        Log.v("PlivoOutbound", "Create outbound call object");
+        outgoing.call(mEditText.getText().toString());
 
     }
 
@@ -211,6 +226,65 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
     }
 
 
+
+   /* public void callNow(View view) {
+        // Log into plivo cloud
+        outgoing = endpoint.createOutgoingCall();
+        Log.v("PlivoOutbound", "Create outbound call object");
+        PHONE_NUMBER = number.getText().toString();
+        Log.v("PlivoOutbound", PHONE_NUMBER);
+        outgoing.call(PHONE_NUMBER);
+
+    }*/
+
+
+
+
+    public void onLoginFailed() {
+    }
+
+    public void onLogin() {
+    }
+
+    public void onLogout() {
+        Log.v("PlivoOutbound", "Logged out");
+    }
+
+    /**
+     * This event will be fired when there is new incoming call.
+     * @param incoming new Incoming call object.
+     */
+    public void onIncomingCall(Incoming incoming) {
+
+    }
+    public void onIncomingCallHangup(Incoming incoming) {
+
+    }
+    public void onIncomingCallRejected(Incoming incoming) {
+
+    }
+
+    /**
+     * This event will be fired when outgoing call is initiated.
+     * @param outgoing
+     */
+    public void onOutgoingCall(Outgoing outgoing) {
+
+    }
+
+    public void onOutgoingCallAnswered(Outgoing outgoing) {
+
+    }
+
+    public void onOutgoingCallHangup(Outgoing outgoing) {
+
+    }
+    public void onOutgoingCallRejected(Outgoing outgoing) {
+
+    }
+    public void onOutgoingCallInvalid(Outgoing outgoing) {
+
+    }
 
 }
 
