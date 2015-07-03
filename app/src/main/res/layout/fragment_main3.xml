@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:theme="@style/AppTheme.Dark"
     tools:context=".MyFragment2">
 
 
@@ -18,7 +19,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:alpha="0"
-        android:background="#000000"
         android:clickable="true"
         android:focusable="true" />
 
@@ -123,6 +123,7 @@
 
                 <TextView
                     style="@style/PhoneNumber"
+                    android:id="@+id/one"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
                     android:layout_weight="0.35"
@@ -230,6 +231,7 @@
                         android:textSize="42sp" />
 
                     <TextView
+
                         android:layout_toRightOf="@id/n_star"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

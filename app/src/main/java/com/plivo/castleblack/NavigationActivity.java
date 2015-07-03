@@ -42,13 +42,12 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
     @InjectView(R.id.app_bar) Toolbar _toolbar;
     @InjectView(R.id.main_drawer) NavigationView _drawer;
     @InjectView(R.id.drawer_layout) DrawerLayout _drawerLayout;
-    @InjectView(R.id.tab_layout) TabLayout _tabLayout;
-    @InjectView(R.id.pager) ViewPager _pager;
+
 
     private static final String SELECTED_ITEM_ID = "selected_item_id";
     private ActionBarDrawerToggle _drawerToggle;
     private int _selectedId;
-    private MyPagerAdapter _adapter;
+
     public Context ctx;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,14 +63,6 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         _selectedId = savedInstanceState == null ? R.id.navigation_item_1 : savedInstanceState.getInt(SELECTED_ITEM_ID );
         navigate(_selectedId);
 
-        _adapter = new MyPagerAdapter(getSupportFragmentManager());
-
-        _pager.setAdapter(_adapter);
-
-        _tabLayout.setTabsFromPagerAdapter(_adapter);
-        _tabLayout.setupWithViewPager(_pager);
-
-        _pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(_tabLayout));
 
     }
 
@@ -142,58 +133,9 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         }
     }
 
-    public static class MyFragment extends Fragment {
-
-
-        public MyFragment() {
-
-        }
-
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container,false);
-            return rootView;
-        }
-    }
 
 
 
 
-
-    class MyPagerAdapter extends FragmentStatePagerAdapter {
-        String[] tabs;
-        public MyPagerAdapter(FragmentManager fm) {
-            super(fm);
-            tabs=getResources().getStringArray(R.array.tabs);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            Fragment frgmt = null;
-
-            switch (position) {
-                case 0:
-                    frgmt = new MyFragment2();
-                    break;
-                case 1:
-                    frgmt = new NavigationActivity.MyFragment();
-                    break;
-
-                default:
-                    break;
-            }
-
-            return frgmt;
-        }
-
-        @Override
-        public int getCount() {
-            return 2;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return tabs[position];
-        }
-    }
 }
 
