@@ -13,9 +13,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import butterknife.ButterKnife;
-import butterknife.InjectView;
-
 import com.plivo.endpoint.Endpoint;
 import com.plivo.endpoint.EventListener;
 import com.plivo.endpoint.Incoming;
@@ -24,6 +21,9 @@ import com.plivo.endpoint.Outgoing;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 
 
 public class LoginActivity extends AppCompatActivity implements EventListener  {

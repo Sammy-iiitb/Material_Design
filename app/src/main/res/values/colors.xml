@@ -38,4 +38,5 @@
 
     <color name="color_set_4_primary">#ff8a65</color>
     <color name="color_set_4_accent">#d500f9</color>
+    <color name="red">#FF3300</color>
 </resources>

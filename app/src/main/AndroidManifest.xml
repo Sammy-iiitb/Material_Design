@@ -38,6 +38,8 @@
         <activity
             android:name=".NavigationActivity"
             android:theme="@style/AppTheme.Dark" />
+        <activity android:name=".CallingScreen"
+            android:theme="@style/AppTheme.Dark" />
 
     </application>
 
