@@ -1,7 +1,8 @@
 package com.plivo.castleblack;
 
 import android.app.ProgressDialog;
-import android.content.SharedPreferences;
+import android.net.Uri;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -13,13 +14,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import butterknife.ButterKnife;
-import butterknife.InjectView;
-
 import com.plivo.endpoint.Endpoint;
 import com.plivo.endpoint.EventListener;
 import com.plivo.endpoint.Incoming;
 import com.plivo.endpoint.Outgoing;
+
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 
 
 public class LoginActivity extends AppCompatActivity implements EventListener  {
@@ -33,7 +38,7 @@ public class LoginActivity extends AppCompatActivity implements EventListener  {
     @InjectView(R.id.input_userName) EditText _userName;
     @InjectView(R.id.input_password) EditText _passwordText;
     @InjectView(R.id.btn_login) Button _loginButton;
-    //@InjectView(R.id.link_signup) TextView _signupLink;
+    @InjectView(R.id.link_signup) TextView _signupLink;
 
     private ProgressDialog progressDialog;
     @Override
@@ -49,6 +54,16 @@ public class LoginActivity extends AppCompatActivity implements EventListener  {
 
                 login();
             }
+        });
+
+        _signupLink.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                goToPlivo();
+            }
+
         });
 
     }
@@ -153,6 +168,16 @@ public class LoginActivity extends AppCompatActivity implements EventListener  {
     }
     public void onIncomingCallRejected(Incoming incoming) {
 
+    }
+
+    public void goToPlivo () {
+        goToUrl ( "https://manage.plivo.com/accounts/register/");
+    }
+
+    private void goToUrl (String url) {
+        Uri uriUrl = Uri.parse(url);
+        Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+        startActivity(launchBrowser);
     }
 
     /**

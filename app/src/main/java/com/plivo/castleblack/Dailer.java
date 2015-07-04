@@ -10,9 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import butterknife.ButterKnife;
-import butterknife.InjectView;
-
 
 public class Dailer extends Fragment {
 

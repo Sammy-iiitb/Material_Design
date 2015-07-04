@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#8BC34A</color>
-    <color name="primary_dark">#8BC34A</color>
+    <color name="primary">#FFFFFF</color>
+    <color name="primary_dark">#689F38</color>
     <color name="primary_darker">#689F38</color>
-    <color name="accent">#FFFFFF</color>
+    <color name="accent">#4CAF50</color>
 
     <color name="black">#000000</color>
     <color name="jet">#222222</color>
@@ -25,6 +25,7 @@
     <color name="theme_dialer_high">#0277BD</color>
     <color name="theme_dialer_primary">#0288D1</color>
     <color name="theme_dialer_accent">#FFF</color>
+    <color name="plivo_color">#8AB100</color>
 
     <color name="color_set_1_primary">#4fc3f7</color>
     <color name="color_set_1_accent">#009688</color>
@@ -37,4 +38,5 @@
 
     <color name="color_set_4_primary">#ff8a65</color>
     <color name="color_set_4_accent">#d500f9</color>
+    <color name="red">#FF3300</color>
 </resources>

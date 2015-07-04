@@ -1,62 +1,76 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="16dp"
     tools:context=".MyActivity">
 
-    <RelativeLayout
-        android:id="@+id/activity_transition_header"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:transitionName="holder1"
-        android:background="@color/theme_default_primary">
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/editText"
-            android:layout_marginLeft="61dp"
-            android:layout_marginStart="61dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="63dp" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_horizontal_margin"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/activity_transition_header"
-        android:layout_alignParentBottom="true">
-
-        <ImageButton
-            android:id="@+id/fab_button"
-            android:layout_width="56dp"
-            android:src="@drawable/endcall"
-            android:transitionName="fab"
-            android:layout_height="56dp"
-            android:background="@drawable/ripple_round"
-            android:stateListAnimator="@anim/fab_anim"
-            android:elevation="5dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="20dp" />
-
-        <FrameLayout
-            android:id="@+id/container"
+        <RelativeLayout
+            android:id="@+id/activity_transition_header"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true" />
+            android:layout_height="220dp"
+            android:transitionName="holder1"
+            android:elevation="5dp"
+            android:background="@color/plivo_color">
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText"
+                android:layout_marginLeft="61dp"
+                android:layout_marginStart="61dp"
+                android:text="Samyak Upadhyay"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="63dp" />
 
-    </RelativeLayout>
+            <com.melnykov.fab.FloatingActionButton
+                android:id="@+id/volume"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:src="@drawable/volume"
+                android:layout_marginLeft="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignTop="@+id/dialpad"
+                fab:fab_type="normal"
+                fab:fab_shadow="true"
+                fab:fab_colorNormal="@color/primary"
+                fab:fab_colorPressed="@color/theme_dialer_high"
+                fab:fab_colorRipple="@color/theme_dialer_primary"
+                 />
+
+            <com.melnykov.fab.FloatingActionButton
+                android:id="@+id/dialpad"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:src="@drawable/dialpad"
+                android:layout_below="@+id/editText"
+                android:layout_centerHorizontal="true"
+                fab:fab_type="normal"
+                fab:fab_shadow="true"
+                fab:fab_colorNormal="@color/primary"
+                fab:fab_colorPressed="@color/theme_dialer_high"
+                fab:fab_colorRipple="@color/theme_dialer_primary"
+                />
+
+            <com.melnykov.fab.FloatingActionButton
+                android:id="@+id/mute"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:clickable="true"
+                android:src="@drawable/mute1"
+                android:layout_alignTop="@+id/dialpad"
+                android:layout_marginRight="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                fab:fab_type="normal"
+                fab:fab_shadow="true"
+                fab:fab_colorNormal="@color/primary"
+                fab:fab_colorPressed="@color/theme_dialer_high"
+                fab:fab_colorRipple="@color/theme_dialer_primary"/>
+            </RelativeLayout>
 
 
 </RelativeLayout>
