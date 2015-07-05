@@ -2,7 +2,6 @@ package com.plivo.castleblack;
 
 import android.app.ProgressDialog;
 import android.net.Uri;
-
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -30,8 +29,7 @@ import butterknife.InjectView;
 public class LoginActivity extends AppCompatActivity implements EventListener  {
     private static final String TAG = "LoginActivity";
 
-    /*SharedPreferences sp=getSharedPreferences("LoginActivity", 0);
-    SharedPreferences.Editor Ed=sp.edit();*/
+    public final static String EXTRA_MESSAGE = "com.plivo.example.MESSAGE";
     Endpoint endpoint = Endpoint.newInstance(true, this);
 
 
@@ -44,7 +42,6 @@ public class LoginActivity extends AppCompatActivity implements EventListener  {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_login);
         ButterKnife.inject(this);
         _loginButton.setOnClickListener(new View.OnClickListener() {
@@ -87,15 +84,10 @@ public class LoginActivity extends AppCompatActivity implements EventListener  {
         String username = _userName.getText().toString();
         String password = _passwordText.getText().toString();
 
-        /*Ed.putString("End", username);
-        Ed.putString("Pwd",password);
-        Ed.putBoolean("isLogin", true);
-        Ed.commit();*/
         Log.v("PlivoOutbound", username);
         Log.v("PlivoOutbound", password);
 
         endpoint.login(username, password);
-        DataHolder.setEndpoint(endpoint);
 
     }
 
