@@ -69,7 +69,8 @@
                         android:textCursorDrawable="@null"
                         android:background="@null"
                         android:textColor="@color/black"
-                        android:textSize="34sp" />
+                        android:textSize="34sp"
+                        />
 
                     <View
                         android:layout_width="match_parent"
@@ -108,7 +109,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="55dp"
                     android:clickable="true"
-                    android:src="@drawable/ic_perm_phone_msg_black_24dp"
+                    android:src="@drawable/ic_textsms_white_24dp"
                     style="SendSmsFabButton"
                     fab:fab_shadow="true"
                     fab:fab_colorNormal="@color/theme_dialer_high"
@@ -120,6 +121,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_gravity="center"
+                    android:onClick="textNow"
                     />
 
                 <com.melnykov.fab.FloatingActionButton
@@ -137,7 +139,8 @@
                     fab:fab_type="mini"
                     android:layout_alignTop="@+id/btn_send_sms"
                     android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true" />
+                    android:layout_centerVertical="true"
+                    android:onClick="getContacts"/>
 
                 <com.melnykov.fab.FloatingActionButton
                     android:id="@+id/btn_voice_mail"
@@ -356,8 +359,7 @@
             fab:fab_colorNormal="@color/dialer_call"
             fab:fab_colorPressed="#455A64"
             fab:fab_colorRipple="#CFD8DC"
-            style="CallFabButton"
-                     />
+            style="CallFabButton" />
 
 
     </LinearLayout>
@@ -368,7 +370,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/drawer_header"
-        app:menu="@menu/menu_drawer" />
+        app:menu="@menu/menu_drawer"
+        />
 
 
 
