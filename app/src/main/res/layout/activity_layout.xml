@@ -94,7 +94,9 @@
             android:id="@+id/fab_button"
             android:layout_width="70dp"
             android:src="@drawable/endcall"
-
+            fab:fab_colorNormal="@color/red"
+            fab:fab_colorPressed="@color/theme_dialer_high"
+            fab:fab_colorRipple="@color/theme_dialer_primary"
             android:layout_height="70dp"
             android:onClick="hangupNow"
             android:layout_alignParentBottom="true"
