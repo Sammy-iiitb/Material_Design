@@ -12,9 +12,8 @@
     <RelativeLayout
         android:id="@+id/activity_transition_header"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
-
-        android:background="@color/plivo_color">
+        android:layout_height="200dp"
+       android:background="@color/plivo_color">
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -56,7 +55,7 @@
             fab:fab_colorNormal="@color/primary"
             fab:fab_colorPressed="@color/theme_dialer_high"
             fab:fab_colorRipple="@color/theme_dialer_primary"
-            android:background="@drawable/color5"    />
+              />
 
         <com.melnykov.fab.FloatingActionButton
             android:id="@+id/mute"
