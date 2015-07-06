@@ -73,7 +73,8 @@
             android:layout_marginTop="140dp"
             android:layout_marginEnd="42dp"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:onClick="muteOn"/>
     </RelativeLayout>
 
 

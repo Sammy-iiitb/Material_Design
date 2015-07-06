@@ -35,7 +35,8 @@ public class CallingScreen extends AppCompatActivity implements EventListener {
     Outgoing outgoing = DataHolder.getOutgoing();
 
     private AudioManager myAudioManager;
-    boolean isOn = false;
+    boolean isSpeakerOn;
+    boolean isMuteOn;
     View view;
 
     @InjectView(R.id.speaker) FloatingActionButton speaker;
@@ -80,17 +81,27 @@ public class CallingScreen extends AppCompatActivity implements EventListener {
     public void speakerOn(View view) {
         Log.v("PlivoOutbound", "Speaker btn pressed...");
         myAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        if (!isOn) {
+        if (!isSpeakerOn) {
             myAudioManager.setSpeakerphoneOn(true);
             //speaker.setImageResource(R.drawable.ic_volume_mute_black_24dp);
-            isOn = true;
+            isSpeakerOn = true;
         }
         else {
             myAudioManager.setSpeakerphoneOn(false);
             //speaker.setImageResource(R.drawable.ic_volume_up_black_24dp);
-            isOn=false;
+            isSpeakerOn=false;
         }
 
+    }
+
+    public void muteOn(View view){
+        if (!isMuteOn) {
+            Log.v("PlivoPhone", "Mute");
+            outgoing.mute();
+        }else{
+            Log.v("PlivoPhone", "Unmute");
+            outgoing.unmute();
+        }
     }
 
     public void onLoginFailed() {
