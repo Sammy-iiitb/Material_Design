@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"
-            android:background="@color/primary_darker"
+            android:background="@color/primary_dark"
             app:theme="@style/ThemeOverlay.AppCompat.ActionBar"/>
 
         <RelativeLayout
@@ -28,29 +28,18 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:focusable="true"
-            android:clickable="true"
-            android:elevation="5dip">
+            android:clickable="true">
 
             <LinearLayout
                 android:id="@+id/phone_top"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?attr/colorPrimaryDark"
+                android:background="@color/white"
                 android:orientation="vertical"
                 android:animateLayoutChanges="true"
-                android:paddingBottom="@dimen/default_margin_24"
                 android:paddingLeft="@dimen/default_margin_24"
                 android:paddingRight="@dimen/default_margin_24"
-                android:paddingTop="@dimen/default_margin_16">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_margin_8"
-                    android:paddingBottom="@dimen/default_margin_4"
-                    android:textColor="?attr/colorAccent"
-                    android:textSize="12sp" />
-
+                >
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -67,10 +56,10 @@
                         android:paddingLeft="@dimen/default_margin_16"
                         android:paddingRight="@dimen/default_margin_16"
                         android:paddingTop="@dimen/default_margin_16"
-                        android:background="?attr/selectableItemBackground"
-                        android:src="@drawable/ic_backspace" />
+                        android:src="@drawable/backspace" />
 
                     <EditText
+                        android:layout_marginTop="15dp"
                         android:id="@+id/edit_phone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -79,7 +68,7 @@
                         android:layout_toLeftOf="@id/backspace"
                         android:textCursorDrawable="@null"
                         android:background="@null"
-                        android:textColor="#ffffff"
+                        android:textColor="@color/black"
                         android:textSize="34sp" />
 
                     <View
@@ -90,6 +79,7 @@
                         android:layout_below="@id/backspace"/>
 
                 </RelativeLayout>
+
 
                 <TextView
                     android:id="@+id/paste"
@@ -102,17 +92,91 @@
 
             </LinearLayout>
 
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_below="@+id/phone_top"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/linearLayout">
+
+
+                <com.melnykov.fab.FloatingActionButton
+                    android:id="@+id/btn_send_sms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="55dp"
+                    android:clickable="true"
+                    android:src="@drawable/ic_perm_phone_msg_black_24dp"
+                    style="SendSmsFabButton"
+                    fab:fab_shadow="true"
+                    fab:fab_colorNormal="@color/theme_dialer_high"
+                    fab:fab_colorPressed="@color/theme_dialer_high"
+                    fab:fab_colorRipple="@color/theme_dialer_primary"
+                    fab:fab_type="mini"
+                    android:layout_marginLeft="70dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_gravity="center"
+                    />
+
+                <com.melnykov.fab.FloatingActionButton
+                    android:id="@+id/btn_add_contact"
+                    android:layout_width="70dp"
+                    android:layout_height="55dp"
+                    android:clickable="true"
+                    fab:fab_shadow="true"
+                    fab:fab_colorNormal="@color/theme_dialer_high"
+                    fab:fab_colorPressed="@color/theme_dialer_high"
+                    fab:fab_colorRipple="@color/theme_dialer_primary"
+                    android:src="@drawable/ic_person_add"
+                    style="AddContactFabButton"
+                    android:layout_gravity="center"
+                    fab:fab_type="mini"
+                    android:layout_alignTop="@+id/btn_send_sms"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true" />
+
+                <com.melnykov.fab.FloatingActionButton
+                    android:id="@+id/btn_voice_mail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="55dp"
+                    android:clickable="true"
+                    android:layout_marginRight="70dp"
+                    fab:fab_shadow="true"
+                    fab:fab_colorNormal="@color/theme_dialer_high"
+                    fab:fab_colorPressed="@color/theme_dialer_high"
+                    fab:fab_colorRipple="@color/theme_dialer_primary"
+                    android:src="@drawable/ic_voicemail"
+                    style="VoiceMailFabButton"
+                    fab:fab_type="mini"
+                    android:layout_alignTop="@+id/btn_add_contact"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                   />
+            </RelativeLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/phone_top"
+                android:layout_marginBottom="10dp"
                 android:id="@+id/lay"
                 android:orientation="vertical"
-                android:paddingRight="78dip">
+                android:layout_gravity="center"
+                android:paddingRight="30dip"
+                android:paddingLeft="30dip"
+                android:layout_below="@+id/linearLayout"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/default_size_54"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -143,7 +207,8 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/default_size_54">
+                    android:layout_height="50dp"
+                    android:layout_gravity="center">
 
                     <TextView
                         style="@style/PhoneNumber"
@@ -173,7 +238,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/default_size_54">
+                    android:layout_height="50dp">
 
                     <TextView
                         style="@style/PhoneNumber"
@@ -181,7 +246,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="0.35"
                         android:tag="7"
-                        android:text="7" />
+                        android:text="7"
+                         />
 
                     <TextView
                         style="@style/PhoneNumber"
@@ -203,7 +269,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/default_size_54">
+                    android:layout_height="50dp">
                         <TextView
                             style="@style/PhoneNumber"
                             android:id="@+id/n_star"
@@ -241,6 +307,17 @@
                             style="@style/PhoneNumberSecond"
                             android:layout_centerVertical="true"/>
 
+                        <!-- <com.melnykov.fab.FloatingActionButton
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_gravity="center_horizontal"
+                     android:layout_marginBottom="16dip"
+                     android:src="@drawable/ic_clear"
+                     fab:fab_colorNormal="#607D8B"
+                     fab:fab_colorPressed="#455A64"
+                     fab:fab_colorRipple="#CFD8DC"
+                     fab:fab_type="mini" /> -->
+
                     </RelativeLayout>
 
 
@@ -264,7 +341,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="4dip"
                 android:layout_below="@id/phone_top"
-                android:background="@drawable/bg_float_header_shadow" />
+                android:background="@drawable/bg_float_header_shadow"
+                android:id="@+id/view" />
 
             <LinearLayout
                 android:layout_width="82dip"
@@ -273,63 +351,27 @@
                 android:layout_below="@id/phone_top"
                 android:layout_marginTop="-28dip"
                 android:orientation="vertical"
-                android:paddingRight="@dimen/default_margin_16">
-
-                <com.melnykov.fab.FloatingActionButton
-                    android:id="@+id/btn_call"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="16dip"
-                    android:src="@drawable/ic_local_phone"
-                    android:onClick="callNow"
-                    style="CallFabButton"
-                    />
+                android:paddingRight="@dimen/default_margin_16"
+                />
 
 
-                <com.melnykov.fab.FloatingActionButton
-                    android:id="@+id/btn_add_contact"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="16dip"
-                    android:src="@drawable/ic_person_add"
-                    style="AddContactFabButton"
-                    fab:fab_type="mini" />
 
-                <com.melnykov.fab.FloatingActionButton
-                    android:id="@+id/btn_send_sms"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="16dip"
-                    android:src="@drawable/ic_perm_phone_msg_black_24dp"
-                    style="SendSmsFabButton"
-                    fab:fab_type="mini" />
-
-                <com.melnykov.fab.FloatingActionButton
-                    android:id="@+id/btn_voice_mail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="16dip"
-                    android:src="@drawable/ic_voicemail"
-                    style="VoiceMailFabButton"
-                    fab:fab_type="mini" />
-
-                <!-- <com.melnykov.fab.FloatingActionButton
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:layout_gravity="center_horizontal"
-                     android:layout_marginBottom="16dip"
-                     android:src="@drawable/ic_clear"
-                     fab:fab_colorNormal="#607D8B"
-                     fab:fab_colorPressed="#455A64"
-                     fab:fab_colorRipple="#CFD8DC"
-                     fab:fab_type="mini" /> -->
-            </LinearLayout>
 
         </RelativeLayout>
+
+        <com.melnykov.fab.FloatingActionButton
+            android:id="@+id/btn_call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dip"
+            android:src="@drawable/ic_local_phone"
+            android:onClick="callNow"
+            fab:fab_colorNormal="@color/dialer_call"
+            fab:fab_colorPressed="#455A64"
+            fab:fab_colorRipple="#CFD8DC"
+            style="CallFabButton"
+                     />
 
 
     </LinearLayout>
