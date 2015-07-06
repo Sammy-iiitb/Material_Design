@@ -32,9 +32,9 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:src="@drawable/ic_volume_up_black_24dp"
-            android:layout_marginLeft="40dp"
-
-            android:layout_alignBottom="@+id/dialpad"
+            android:layout_marginLeft="70dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="140dp"
             fab:fab_type="mini"
             fab:fab_shadow="true"
             fab:fab_colorNormal="@color/primary"
@@ -49,30 +49,31 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:src="@drawable/ic_dialpad_black_24dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="140dp"
             fab:fab_type="mini"
             fab:fab_shadow="true"
             fab:fab_colorNormal="@color/primary"
             fab:fab_colorPressed="@color/theme_dialer_high"
             fab:fab_colorRipple="@color/theme_dialer_primary"
-            android:layout_below="@+id/editText"
-            android:layout_centerHorizontal="true"
-            />
+            android:background="@drawable/color5"    />
 
         <com.melnykov.fab.FloatingActionButton
             android:id="@+id/mute"
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:clickable="true"
-            android:src="@drawable/mute1"
-            android:layout_alignBottom="@+id/dialpad"
-            android:layout_marginRight="40dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
+            android:src="@drawable/microphone"
+            android:layout_marginRight="70dp"
             fab:fab_type="mini"
             fab:fab_shadow="true"
             fab:fab_colorNormal="@color/primary"
             fab:fab_colorPressed="@color/theme_dialer_high"
-            fab:fab_colorRipple="@color/theme_dialer_primary"/>
+            fab:fab_colorRipple="@color/theme_dialer_primary"
+            android:layout_marginTop="140dp"
+            android:layout_marginEnd="42dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
     </RelativeLayout>
 
 
@@ -95,11 +96,11 @@
             android:src="@drawable/endcall"
 
             android:layout_height="70dp"
-
             android:onClick="hangupNow"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="20dp" />
+            android:layout_marginBottom="20dp"
+            fab:fab_shadow="true"/>
 
         <FrameLayout
             android:id="@+id/container"
