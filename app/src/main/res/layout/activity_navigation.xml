@@ -68,7 +68,7 @@
                         android:layout_toLeftOf="@id/backspace"
                         android:textCursorDrawable="@null"
                         android:background="@null"
-                        android:textColor="@color/black"
+                        android:textColor="@color/plivo_color"
                         android:textSize="34sp" />
 
                     <View
