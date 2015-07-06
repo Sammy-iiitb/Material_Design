@@ -16,6 +16,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,12 +28,20 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.content.Context;
+import android.provider.ContactsContract;
+import android.net.Uri;
+import android.database.Cursor;
+
 
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
@@ -42,7 +51,7 @@ import com.plivo.endpoint.EventListener;
 import com.plivo.endpoint.Incoming;
 import com.plivo.endpoint.Outgoing;
 
-public class NavigationActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, EventListener {
+public class NavigationActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final int NUMBER_STAR = 10;
     public static final int NUMBER_SHARP = 11;
@@ -51,14 +60,14 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
     @InjectView(R.id.drawer_layout) DrawerLayout _drawerLayout;
     @InjectView(R.id.backspace) View mBackspaceBtn;
     @InjectView(R.id.edit_phone) EditText mEditText;
-    @InjectView(R.id.btn_call)
-    FloatingActionButton callBtn;
+
 
     Endpoint endpoint = DataHolder.getEndpoint();
     Outgoing outgoing = new Outgoing(endpoint);
     private static final String SELECTED_ITEM_ID = "selected_item_id";
     private ActionBarDrawerToggle _drawerToggle;
     private int _selectedId;
+    private boolean isKeyboard;
 
     public Context ctx;
     @Override
@@ -76,6 +85,7 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         _selectedId = savedInstanceState == null ? R.id.navigation_item_1 : savedInstanceState.getInt(SELECTED_ITEM_ID );
         navigate(_selectedId);
 
+        disableSoftInputFromAppearing(mEditText);
         mBackspaceBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,14 +153,68 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
 
 
     }
+
     public void callNow(View view) {
         // Log into plivo cloud
+        String number = mEditText.getText().toString();
         outgoing = endpoint.createOutgoingCall();
+        outgoing.call(number);
+        DataHolder.setOutgoing(outgoing);
         Log.v("PlivoOutbound", "Create outbound call object");
-        outgoing.call(mEditText.getText().toString());
 
     }
 
+    public void textNow(View view){
+        if(!isKeyboard) {
+            showSoftKeyboard(mEditText);
+            isKeyboard=true;
+        }
+        else {
+            disableSoftInputFromAppearing(mEditText);
+            isKeyboard=false;
+        }
+    }
+
+    public void getContacts(View view) {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (data != null) {
+            Uri uri = data.getData();
+
+            if (uri != null) {
+                Cursor c = null;
+                try {
+                    c = getContentResolver()
+                            .query(uri,
+                                    new String[] {
+                                            ContactsContract.CommonDataKinds.Phone.NUMBER,
+                                            ContactsContract.CommonDataKinds.Phone.TYPE },
+                                    null, null, null);
+
+                    if (c != null && c.moveToFirst()) {
+                        String num = c.getString(0);
+                        String _num = CallHelper.helpCall(num);
+                        if (_num.length() > 0)
+                            mEditText.setText(_num);
+                        else {
+                            Toast.makeText(getApplicationContext(),
+                                    "Number should start with country code",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }
+                } finally {
+                    if (c != null) {
+                        c.close();
+                    }
+                }
+            }
+        }
+    }
 
     private void navigate(int mSelectedId) {
         Intent intent = null;
@@ -210,13 +274,12 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         outState.putInt(SELECTED_ITEM_ID, _selectedId);
     }
 
-    @Override
     public void onBackPressed() {
-        if (_drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            _drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            moveTaskToBack(true);
-        }
+        Log.d("CDA", "onBackPressed Called");
+        Intent setIntent = new Intent(Intent.ACTION_MAIN);
+        setIntent.addCategory(Intent.CATEGORY_HOME);
+        setIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(setIntent);
     }
 
     private void updateText(String symbol) {
@@ -225,65 +288,18 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         text.insert(selectionStart, symbol);
     }
 
-
-
-   /* public void callNow(View view) {
-        // Log into plivo cloud
-        outgoing = endpoint.createOutgoingCall();
-        Log.v("PlivoOutbound", "Create outbound call object");
-        PHONE_NUMBER = number.getText().toString();
-        Log.v("PlivoOutbound", PHONE_NUMBER);
-        outgoing.call(PHONE_NUMBER);
-
-    }*/
-
-
-
-
-    public void onLoginFailed() {
+    public static void disableSoftInputFromAppearing(EditText editText) {
+        editText.setRawInputType(InputType.TYPE_CLASS_TEXT);
+        editText.setTextIsSelectable(true);
     }
 
-    public void onLogin() {
-    }
-
-    public void onLogout() {
-        Log.v("PlivoOutbound", "Logged out");
-    }
-
-    /**
-     * This event will be fired when there is new incoming call.
-     * @param incoming new Incoming call object.
-     */
-    public void onIncomingCall(Incoming incoming) {
-
-    }
-    public void onIncomingCallHangup(Incoming incoming) {
-
-    }
-    public void onIncomingCallRejected(Incoming incoming) {
-
-    }
-
-    /**
-     * This event will be fired when outgoing call is initiated.
-     * @param outgoing
-     */
-    public void onOutgoingCall(Outgoing outgoing) {
-
-    }
-
-    public void onOutgoingCallAnswered(Outgoing outgoing) {
-
-    }
-
-    public void onOutgoingCallHangup(Outgoing outgoing) {
-
-    }
-    public void onOutgoingCallRejected(Outgoing outgoing) {
-
-    }
-    public void onOutgoingCallInvalid(Outgoing outgoing) {
-
+    public void showSoftKeyboard(EditText editText) {
+        Log.v("PlivoOutbound", "show keyboard");
+        if (editText.requestFocus()) {
+            InputMethodManager imm = (InputMethodManager)
+                    getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
+        }
     }
 
 }

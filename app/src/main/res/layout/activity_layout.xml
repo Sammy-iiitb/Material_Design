@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="16dp"
-    tools:context=".MyActivity">
+    tools:context=".CallingScreen">
 
 
 
@@ -13,8 +13,7 @@
         android:id="@+id/activity_transition_header"
         android:layout_width="match_parent"
         android:layout_height="220dp"
-        android:transitionName="holder1"
-        android:elevation="5dp"
+
         android:background="@color/plivo_color">
         <EditText
             android:layout_width="wrap_content"
@@ -29,32 +28,34 @@
             android:layout_marginTop="63dp" />
 
         <com.melnykov.fab.FloatingActionButton
-            android:id="@+id/volume"
+            android:id="@+id/speaker"
             android:layout_width="55dp"
             android:layout_height="55dp"
-            android:src="@drawable/volume"
+            android:src="@drawable/ic_volume_up_black_24dp"
             android:layout_marginLeft="40dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignTop="@+id/dialpad"
-            fab:fab_type="normal"
+
+            android:layout_alignBottom="@+id/dialpad"
+            fab:fab_type="mini"
             fab:fab_shadow="true"
             fab:fab_colorNormal="@color/primary"
             fab:fab_colorPressed="@color/theme_dialer_high"
             fab:fab_colorRipple="@color/theme_dialer_primary"
+            android:onClick="speakerOn"
+
             />
 
         <com.melnykov.fab.FloatingActionButton
             android:id="@+id/dialpad"
             android:layout_width="55dp"
             android:layout_height="55dp"
-            android:src="@drawable/dialpad"
-            android:layout_below="@+id/editText"
-            android:layout_centerHorizontal="true"
-            fab:fab_type="normal"
+            android:src="@drawable/ic_dialpad_black_24dp"
+            fab:fab_type="mini"
             fab:fab_shadow="true"
             fab:fab_colorNormal="@color/primary"
             fab:fab_colorPressed="@color/theme_dialer_high"
             fab:fab_colorRipple="@color/theme_dialer_primary"
+            android:layout_below="@+id/editText"
+            android:layout_centerHorizontal="true"
             />
 
         <com.melnykov.fab.FloatingActionButton
@@ -63,11 +64,11 @@
             android:layout_height="55dp"
             android:clickable="true"
             android:src="@drawable/mute1"
-            android:layout_alignTop="@+id/dialpad"
+            android:layout_alignBottom="@+id/dialpad"
             android:layout_marginRight="40dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            fab:fab_type="normal"
+            fab:fab_type="mini"
             fab:fab_shadow="true"
             fab:fab_colorNormal="@color/primary"
             fab:fab_colorPressed="@color/theme_dialer_high"
@@ -88,15 +89,14 @@
         android:layout_below="@+id/activity_transition_header"
         android:layout_alignParentBottom="true" >
 
-        <ImageButton
+        <com.melnykov.fab.FloatingActionButton
             android:id="@+id/fab_button"
             android:layout_width="70dp"
             android:src="@drawable/endcall"
-            android:transitionName="fab"
+
             android:layout_height="70dp"
-            android:background="@drawable/ripple_round"
-            android:stateListAnimator="@anim/fab_anim"
-            android:elevation="5dp"
+
+            android:onClick="hangupNow"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="20dp" />

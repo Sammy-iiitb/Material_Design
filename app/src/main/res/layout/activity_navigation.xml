@@ -295,6 +295,7 @@
                     android:layout_marginBottom="16dip"
                     android:src="@drawable/ic_person_add"
                     style="AddContactFabButton"
+                    android:onClick="getContacts"
                     fab:fab_type="mini" />
 
                 <com.melnykov.fab.FloatingActionButton
@@ -313,20 +314,12 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="16dip"
-                    android:src="@drawable/ic_voicemail"
+                    android:src="@drawable/ic_textsms_white_24dp"
                     style="VoiceMailFabButton"
+                    android:onClick="textNow"
                     fab:fab_type="mini" />
 
-                <!-- <com.melnykov.fab.FloatingActionButton
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:layout_gravity="center_horizontal"
-                     android:layout_marginBottom="16dip"
-                     android:src="@drawable/ic_clear"
-                     fab:fab_colorNormal="#607D8B"
-                     fab:fab_colorPressed="#455A64"
-                     fab:fab_colorRipple="#CFD8DC"
-                     fab:fab_type="mini" /> -->
+
             </LinearLayout>
 
         </RelativeLayout>
