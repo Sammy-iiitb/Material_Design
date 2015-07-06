@@ -109,7 +109,7 @@
                     android:layout_height="55dp"
                     android:clickable="true"
                     android:src="@drawable/ic_text_format_black_24dp"
-                    style="SendSmsFabButton"
+                   style="SendSmsFabButton"
                     fab:fab_shadow="true"
                     fab:fab_colorNormal="@color/primary"
                     fab:fab_colorPressed="@color/theme_dialer_high"
@@ -358,8 +358,7 @@
             fab:fab_colorNormal="@color/dialer_call"
             fab:fab_colorPressed="#455A64"
             fab:fab_colorRipple="#CFD8DC"
-            style="CallFabButton"
-                     />
+            style="CallFabButton" />
 
 
     </LinearLayout>
@@ -370,7 +369,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/drawer_header"
-        app:menu="@menu/menu_drawer" />
+        app:menu="@menu/menu_drawer"
+        />
 
 
 
