@@ -88,6 +88,7 @@ public class LoginActivity extends AppCompatActivity implements EventListener  {
         Log.v("PlivoOutbound", password);
 
         endpoint.login(username, password);
+        DataHolder.setEndpoint(endpoint);
 
     }
 
@@ -139,6 +140,7 @@ public class LoginActivity extends AppCompatActivity implements EventListener  {
 
         //_loginButton.setEnabled(true);
         Log.v("PlivoOutbound", "Logged in");
+
         Intent intent = new Intent(this, NavigationActivity.class);
         startActivity(intent);
 
@@ -177,7 +179,9 @@ public class LoginActivity extends AppCompatActivity implements EventListener  {
      * @param outgoing
      */
     public void onOutgoingCall(Outgoing outgoing) {
-
+        Log.v("PlivoOutbound", "Calling...");
+        Intent intent = new Intent(this, CallingScreen.class);
+        startActivity(intent);
     }
 
     public void onOutgoingCallAnswered(Outgoing outgoing) {
@@ -185,12 +189,19 @@ public class LoginActivity extends AppCompatActivity implements EventListener  {
     }
 
     public void onOutgoingCallHangup(Outgoing outgoing) {
+        Log.v("PlivoPhone", "Call Ended");
+        Intent intent = new Intent(this, NavigationActivity.class);
+        startActivity(intent);
 
     }
     public void onOutgoingCallRejected(Outgoing outgoing) {
-
+        Log.v("PlivoPhone", "Call Ended");
+        Intent intent = new Intent(this, NavigationActivity.class);
+        startActivity(intent);
     }
     public void onOutgoingCallInvalid(Outgoing outgoing) {
-
+        Log.v("PlivoPhone", "Call Ended");
+        Intent intent = new Intent(this, NavigationActivity.class);
+        startActivity(intent);
     }
 }
