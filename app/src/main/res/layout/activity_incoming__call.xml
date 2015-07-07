@@ -1,19 +1,15 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fab="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="16dp"
-    tools:context=".CallingScreen">
-
-
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    tools:context="com.plivo.castleblack.Incoming_Call">
 
     <RelativeLayout
         android:id="@+id/activity_transition_header"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-       android:background="@color/plivo_color">
+        android:background="@color/plivo_color">
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,7 +51,7 @@
             fab:fab_colorNormal="@color/primary"
             fab:fab_colorPressed="@color/theme_dialer_high"
             fab:fab_colorRipple="@color/theme_dialer_primary"
-              />
+            />
 
         <com.melnykov.fab.FloatingActionButton
             android:id="@+id/mute"
@@ -90,22 +86,8 @@
         android:layout_below="@+id/activity_transition_header"
         android:layout_alignParentBottom="true" >
 
-        <!--<com.melnykov.fab.FloatingActionButton
-            android:id="@+id/accept_call"
-            android:layout_width="70dp"
-            android:src="@drawable/endcall"
-            fab:fab_colorNormal="@color/dialer_call"
-            fab:fab_colorPressed="@color/theme_dialer_high"
-            fab:fab_colorRipple="@color/theme_dialer_primary"
-            android:layout_height="70dp"
-            android:onClick="answerNow"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="210dp"
-            fab:fab_shadow="true"/> -->
-
         <com.melnykov.fab.FloatingActionButton
-            android:id="@+id/fab_button"
+            android:id="@+id/hangup_call"
             android:layout_width="70dp"
             android:src="@drawable/endcall"
             fab:fab_colorNormal="@color/red"
@@ -115,7 +97,21 @@
             android:onClick="hangupNow"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="50dp"
+            fab:fab_shadow="true"/>
+
+        <com.melnykov.fab.FloatingActionButton
+            android:id="@+id/accept_call"
+            android:layout_width="70dp"
+            android:src="@drawable/ic_local_phone"
+            fab:fab_colorNormal="@color/dialer_call"
+            fab:fab_colorPressed="@color/theme_dialer_high"
+            fab:fab_colorRipple="@color/theme_dialer_primary"
+            android:layout_height="70dp"
+            android:onClick="answerNow"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="240dp"
             fab:fab_shadow="true"/>
 
         <FrameLayout
@@ -124,7 +120,5 @@
             android:layout_height="200dp" />
 
     </RelativeLayout>
-
-
 
 </RelativeLayout>

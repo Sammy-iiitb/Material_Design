@@ -28,6 +28,7 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -37,9 +38,13 @@
         <activity
             android:name=".NavigationActivity"
             android:theme="@style/AppTheme.Dark" />
-        <activity android:name=".CallingScreen"
+        <activity
+            android:name=".CallingScreen"
             android:theme="@style/AppTheme.Dark" />
-
+        <activity
+            android:name=".Incoming_Call"
+            android:theme="@style/AppTheme.Dark" >
+        </activity>
     </application>
 
 </manifest>

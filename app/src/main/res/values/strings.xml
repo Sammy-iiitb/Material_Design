@@ -23,4 +23,5 @@
         <item>recent</item>
 
     </string-array>
+    <string name="title_activity_incoming__call">Incoming_Call</string>
 </resources>

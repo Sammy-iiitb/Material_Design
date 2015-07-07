@@ -31,6 +31,7 @@ public class LoginActivity extends AppCompatActivity implements EventListener  {
 
     public final static String EXTRA_MESSAGE = "com.plivo.example.MESSAGE";
     Endpoint endpoint = Endpoint.newInstance(true, this);
+    Incoming incoming;
 
 
     @InjectView(R.id.input_userName) EditText _userName;
@@ -154,9 +155,7 @@ public class LoginActivity extends AppCompatActivity implements EventListener  {
      * This event will be fired when there is new incoming call.
      * @param incoming new Incoming call object.
      */
-    public void onIncomingCall(Incoming incoming) {
 
-    }
     public void onIncomingCallHangup(Incoming incoming) {
 
     }
@@ -202,6 +201,14 @@ public class LoginActivity extends AppCompatActivity implements EventListener  {
     public void onOutgoingCallInvalid(Outgoing outgoing) {
         Log.v("PlivoPhone", "Call Ended");
         Intent intent = new Intent(this, NavigationActivity.class);
+        startActivity(intent);
+    }
+
+    public void onIncomingCall(Incoming incoming) {
+        this.incoming = incoming;
+        DataHolder.setIncoming(this.incoming);
+        Log.v("PlivoInbound", "Inbound Call...");
+        Intent intent = new Intent(this, Incoming_Call.class);
         startActivity(intent);
     }
 }

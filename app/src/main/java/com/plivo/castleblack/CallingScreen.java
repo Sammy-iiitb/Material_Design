@@ -33,6 +33,7 @@ public class CallingScreen extends AppCompatActivity implements EventListener {
 
 
     Outgoing outgoing = DataHolder.getOutgoing();
+    Incoming incoming;
 
     private AudioManager myAudioManager;
     boolean isSpeakerOn;
@@ -44,9 +45,6 @@ public class CallingScreen extends AppCompatActivity implements EventListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_layout);
-
-
-
     }
 
     @Override
@@ -103,6 +101,18 @@ public class CallingScreen extends AppCompatActivity implements EventListener {
             outgoing.unmute();
         }
     }
+
+    /*public void answerNow(View view) {
+        Log.v("PlivoInbound", "Answering");
+        incoming.answer();
+        Button hangup_button = ((Button)findViewById(R.id.hangup_call));
+        Button answer_button = ((Button)findViewById(R.id.accept_call));
+        hangup_button.setEnabled(false);
+        hangup_button.setClickable(false);
+
+        answer_button.setEnabled(true);
+        answer_button.setClickable(true);
+    }*/
 
     public void onLoginFailed() {
     }
